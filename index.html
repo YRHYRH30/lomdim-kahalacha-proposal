@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>לומדים כהלכה · הצעת צמיחה</title>
+<meta name="description" content="הצעת צמיחה ללומדים כהלכה: בית יהודי של תוכן, לימוד וקהילה">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0e1a30; --navy2:#16264a; --ink:#f5efe2; --muted:#c9c0ad;
+  --gold:#d2ad66; --gold2:#ecd29a; --card:rgba(255,248,232,.055); --line:rgba(210,173,102,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--navy);color:var(--ink);font-family:"Assistant",system-ui,sans-serif;overflow:hidden;-webkit-text-size-adjust:100%}
+body{background:
+  radial-gradient(1200px 700px at 85% -10%, rgba(210,173,102,.16), transparent 60%),
+  radial-gradient(900px 600px at 0% 110%, rgba(60,90,160,.25), transparent 60%),
+  linear-gradient(160deg,var(--navy2),var(--navy) 60%)}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:flex;opacity:0;visibility:hidden;transform:translateX(-40px);
+  transition:opacity .55s ease, transform .55s ease, visibility .55s;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;padding:clamp(56px,7vh,88px) clamp(20px,6vw,110px) clamp(96px,12vh,120px)}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.slide.before{transform:translateX(40px)}
+.inner{margin:auto;width:100%;max-width:1520px}
+.bsd{position:fixed;top:14px;right:18px;font-family:"Frank Ruhl Libre",serif;font-size:15px;color:var(--gold);opacity:.85;z-index:5;letter-spacing:.02em}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-weight:600;letter-spacing:.04em;font-size:clamp(14px,1.2vw,18px);margin-bottom:clamp(10px,1.6vh,18px)}
+.eyebrow::before{content:"";width:34px;height:1.5px;background:var(--gold)}
+h1,h2,h3{font-family:"Frank Ruhl Libre",serif;font-weight:700;line-height:1.15}
+h2{font-size:clamp(30px,3.6vw,56px);margin-bottom:clamp(12px,2vh,22px)}
+h2 em{font-style:normal;color:var(--gold2)}
+p{font-size:clamp(17px,1.4vw,26px);line-height:1.75;color:var(--ink)}
+.lead{color:var(--muted);max-width:1180px;margin-bottom:clamp(18px,3vh,34px)}
+
+/* slide 1 */
+.s1 .inner{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(30px,5vw,90px);align-items:center}
+.s1 h1{font-size:clamp(52px,7.4vw,124px);font-weight:900;color:var(--ink);letter-spacing:-.01em}
+.s1 h1 span{color:var(--gold)}
+.s1 .sub{font-family:"Frank Ruhl Libre",serif;font-size:clamp(22px,2.3vw,36px);color:var(--gold2);margin:10px 0 clamp(18px,3vh,30px)}
+.s1 .intro{max-width:760px}
+.s1 .intro + .intro{margin-top:14px}
+.by{margin-top:clamp(22px,4vh,40px);font-size:clamp(15px,1.15vw,18px);color:var(--muted);border-top:1px solid var(--line);padding-top:14px;display:inline-block}
+.by b{color:var(--ink);font-weight:600}
+.emblem{justify-self:center;width:min(100%,440px);aspect-ratio:1}
+.emblem svg{width:100%;height:100%}
+
+/* cards */
+.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,22px)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(16px,1.6vw,26px);position:relative}
+.card .ic{float:right;width:30px;height:30px;display:grid;place-items:center;margin-left:10px;margin-top:2px}
+.card .ic svg{width:28px!important;height:28px!important}
+.card p{clear:both}
+.card .ic svg{width:24px;height:24px;stroke:var(--gold2);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:clamp(20px,1.5vw,28px);color:var(--gold2);margin-bottom:6px}
+.card p{font-size:clamp(15.5px,1.08vw,20.5px);line-height:1.65;color:var(--ink)}
+.card .n{position:absolute;top:14px;left:18px;font-family:"Frank Ruhl Libre",serif;font-size:28px;color:rgba(210,173,102,.35);font-weight:700}
+.card.hl{background:linear-gradient(160deg,rgba(210,173,102,.2),rgba(210,173,102,.06));border-color:rgba(210,173,102,.6)}
+
+/* slide 3 */
+.two{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,3vw,50px);align-items:start}
+.benefits{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.benefit{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.benefit .dot{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy);font-weight:700;font-size:15px;margin-top:2px}
+.benefit b{display:block;color:var(--gold2);font-size:clamp(17px,1.25vw,23px);margin-bottom:2px}
+.benefit span{font-size:clamp(15px,1.08vw,20px);line-height:1.6;color:var(--ink)}
+.kids{border-radius:22px;padding:clamp(20px,2.2vw,34px);background:linear-gradient(165deg,#f3e8cf,#e6d3a8);color:#22263a}
+.kids h3{font-size:clamp(24px,2.1vw,34px);color:#1a2a4f;margin-bottom:10px}
+.kids p{color:#2b2f45;font-size:clamp(16px,1.2vw,22px)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.chip{padding:6px 14px;border-radius:999px;background:#1a2a4f;color:#f3e8cf;font-weight:600;font-size:clamp(15px,.95vw,18px)}
+
+/* slide 4 */
+.flywrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(20px,4vw,70px);align-items:center}
+.fly{width:100%;max-width:min(600px,56vh);justify-self:center}
+.fly svg{width:100%;height:auto;display:block}
+.profit{margin-top:18px;display:grid;gap:10px}
+.profit div{display:flex;gap:12px;align-items:baseline;padding:12px 16px;border-inline-start:3px solid var(--gold);background:var(--card);border-radius:0 12px 12px 0}
+[dir=rtl] .profit div{border-radius:12px 0 0 12px}
+.profit b{color:var(--gold2);white-space:nowrap;font-size:clamp(17px,1.25vw,23px)}
+.profit span{font-size:clamp(15.5px,1.1vw,20.5px);line-height:1.6}
+.ptitle{font-family:"Frank Ruhl Libre",serif;font-size:clamp(22px,1.9vw,30px);color:var(--gold2);margin-top:clamp(14px,2.4vh,26px)}
+
+/* slide 5 */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.4vw,20px)}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(16px,1.6vw,24px);display:flex;flex-direction:column}
+.step .num{font-family:"Frank Ruhl Libre",serif;font-size:clamp(38px,3.4vw,54px);color:var(--gold);line-height:1;margin-bottom:8px}
+.step h3{font-size:clamp(20px,1.5vw,28px);color:var(--gold2);margin-bottom:8px}
+.step p{font-size:clamp(15.5px,1.08vw,20.5px);line-height:1.65}
+.tag{display:inline-block;margin-top:clamp(14px,2.4vh,24px);padding:6px 14px;border-radius:999px;border:1px solid var(--gold);color:var(--gold2);font-weight:600;font-size:clamp(14px,1.1vw,17px)}
+.closing{margin-top:clamp(18px,3.4vh,34px);text-align:center;font-family:"Frank Ruhl Libre",serif;font-size:clamp(22px,2.2vw,34px);color:var(--ink);line-height:1.45}
+.closing span{color:var(--gold)}
+.candles{display:flex;justify-content:center;gap:6px;margin-bottom:10px}
+.candles i{width:6px;height:22px;background:var(--gold2);border-radius:2px;position:relative;opacity:.9}
+.candles i::before{content:"";position:absolute;top:-11px;left:50%;width:8px;height:10px;margin-left:-4px;background:radial-gradient(circle at 50% 70%,#fff4c9,#f1b14a 60%,transparent 70%);border-radius:50% 50% 50% 50%/60% 60% 40% 40%}
+.candles i.sh{height:30px}
+
+/* nav */
+.nav{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px clamp(16px,3vw,40px) calc(14px + env(safe-area-inset-bottom));z-index:10;
+  background:linear-gradient(to top,rgba(14,26,48,.96),rgba(14,26,48,.75) 70%,transparent)}
+.btn{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:rgba(255,248,232,.06);color:var(--gold2);cursor:pointer;display:grid;place-items:center;transition:background .2s}
+.btn:hover{background:rgba(210,173,102,.2)}
+.btn:disabled{opacity:.3;cursor:default}
+.btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2}
+.dots{display:flex;gap:10px;align-items:center}
+.dots button{width:10px;height:10px;border-radius:999px;border:0;background:rgba(245,239,226,.3);cursor:pointer;transition:all .3s;padding:0}
+.dots button.on{width:30px;background:var(--gold)}
+.counter{font-size:16px;color:var(--muted);min-width:44px;text-align:center;font-variant-numeric:tabular-nums}
+.mid{display:flex;align-items:center;gap:16px}
+
+@media (max-width:1100px){
+  .grid6{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:820px){
+  .slide{padding:52px 18px 110px}
+  .s1 .inner,.two,.flywrap{grid-template-columns:1fr}
+  .emblem{width:150px;order:-1;justify-self:start}
+  .grid6,.steps,.benefits{grid-template-columns:1fr}
+  .fly{max-width:340px}
+  p{line-height:1.7}
+  .card .n{font-size:22px}
+}
+@media (max-height:760px) and (min-width:821px){
+  .slide{padding-top:44px}
+  .card p,.step p{line-height:1.55}
+}
+</style>
+</head>
+<body>
+<div class="bsd" id="bsd">בס״ד</div>
+<main class="deck" id="deck">
+
+<!-- 1 -->
+<section class="slide s1" aria-label="שקופית 1">
+ <div class="inner">
+  <div>
+   <div class="eyebrow">הצעת צמיחה</div>
+   <h1>לומדים <span>כהלכה</span></h1>
+   <div class="sub">בית יהודי של תוכן, לימוד וקהילה</div>
+   <p class="intro">החזון שלנו פשוט וגדול כאחד: שלומדים כהלכה תהיה הבית היהודי שאליו מגיעים כדי ללמוד, לשאול שאלה בהלכה, להתכונן לחג, להעניק לילדים תוכן טוב ולמצוא את מה שהבית היהודי צריך. מקום אחד, חם ומזמין, שאנשים מרגישים בו שייכים.</p>
+   <p class="intro">בשקופיות הבאות נפרוש את התוכנית צעד אחר צעד: שישה מנועים שעובדים יחד, קהילה אחת שעומדת במרכז, מודל כלכלי שמזין את עצמו, וארבעה צעדים שאפשר להתחיל בהם כבר עכשיו, בלי עלות.</p>
+   <div class="by">מוגש על ידי <b>יהודה רוזנקרנץ</b> · Crunch Studio AI</div>
+  </div>
+  <div class="emblem" aria-hidden="true">
+   <svg viewBox="0 0 200 200">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ecd29a"/><stop offset="1" stop-color="#b98d45"/></linearGradient></defs>
+    <circle cx="100" cy="100" r="92" fill="none" stroke="url(#g)" stroke-width="1.5" opacity=".6"/>
+    <circle cx="100" cy="100" r="78" fill="none" stroke="url(#g)" stroke-width=".8" stroke-dasharray="2 5" opacity=".7"/>
+    <!-- open book -->
+    <path d="M100 128 C84 118 62 116 44 120 L44 72 C62 68 84 70 100 80 Z" fill="rgba(210,173,102,.12)" stroke="url(#g)" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M100 128 C116 118 138 116 156 120 L156 72 C138 68 116 70 100 80 Z" fill="rgba(210,173,102,.12)" stroke="url(#g)" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M100 80 L100 128" stroke="url(#g)" stroke-width="2"/>
+    <g stroke="#ecd29a" stroke-width="1.2" opacity=".55"><path d="M56 84 C70 82 82 84 92 88"/><path d="M56 94 C70 92 82 94 92 98"/><path d="M56 104 C70 102 82 104 92 108"/><path d="M108 88 C118 84 130 82 144 84"/><path d="M108 98 C118 94 130 92 144 94"/><path d="M108 108 C118 104 130 102 144 104"/></g>
+    <!-- flame -->
+    <path d="M100 38 C108 48 110 54 100 64 C90 54 92 48 100 38 Z" fill="url(#g)"/>
+    <path d="M100 48 C103 53 103 56 100 60 C97 56 97 53 100 48 Z" fill="#fff4c9"/>
+   </svg>
+  </div>
+ </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" aria-label="שקופית 2">
+ <div class="inner">
+  <div class="eyebrow">התוכנית</div>
+  <h2>שישה <em>מנועים</em> שעובדים יחד</h2>
+  <p class="lead">הצמיחה לא תגיע מכיוון אחד. אלה שישה תחומים שכל אחד מהם עומד בפני עצמו, אבל הכוח האמיתי שלהם הוא שהם מזינים זה את זה: התוכן מביא אנשים, הקהילה מחזיקה אותם, והקורסים, החנות ועולם הילדים נותנים להם סיבה להישאר.</p>
+  <div class="grid6">
+   <div class="card"><span class="n">1</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+    <h3>תוכן בכמויות</h3><p>מתחילים מליצור הרבה תוכן: ברשתות של לומדים כהלכה, אצל שותפים כמו כסף חכם, חלקי וקווי תוכן, ובמקביל דוחפים את הדרך לכלי התקשורת, כדי שהשם שלנו יופיע בכל מקום שבו מחפשים תוכן יהודי טוב.</p></div>
+   <div class="card hl"><span class="n">2</span><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><circle cx="5" cy="10" r="2.2"/><circle cx="19" cy="10" r="2.2"/><path d="M6.5 19c.6-3 2.8-5 5.5-5s4.9 2 5.5 5M1.8 17.5c.4-2 1.6-3.2 3.2-3.4M22.2 17.5c-.4-2-1.6-3.2-3.2-3.4"/></svg></div>
+    <h3>הקהילה</h3><p>הלב של התוכנית ושער הכניסה הראשי. מי שמצטרף מקבל תוכן נוסף, הנחה אוטומטית על הקורסים ועל מוצרי היודאיקה, שיעורי הכנה לחגים ומענה לשאלות בהלכה.</p></div>
+   <div class="card"><span class="n">3</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4z"/><path d="M7 10v5c2.5 2 7.5 2 10 0v-5"/><path d="M21 8v6"/></svg></div>
+    <h3>מאגר הקורסים</h3><p>למלא את המדף בקורסים מכל הסוגים: לבעלי מקצוע כמו קייטרינג, הצלה ושלוחי חב״ד, הכנה לבר מצווה ולחתונה, ועד לימודים מתקדמים של רבנות וחושן משפט.</p></div>
+   <div class="card"><span class="n">4</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></div>
+    <h3>חנות היודאיקה</h3><p>לפתח את החנות ולהגדיל אותה כמה שיותר, כך שמי שלומד איתנו ימצא אצלנו גם את מה שהבית היהודי צריך, ובמחיר מיוחד לחברי הקהילה.</p></div>
+   <div class="card"><span class="n">5</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.3 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg></div>
+    <h3>קהילה פלוס לילדים</h3><p>עולם שלם של תוכן יהודי לילדים: משחקים, טריוויה, שיעורים ואתגרים, שנותנים להם הרבה ערך וידע, וגם הרבה כיף אמיתי.</p></div>
+   <div class="card"><span class="n">6</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 10v4h3l5 4V6L7 10z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg></div>
+    <h3>הרצאות והפצה</h3><p>להפיץ את הבשורה בהרצאות ובקורסים לאנשי חינוך, בכוללים ובעוד הרבה מקומות שבהם יושבים אנשים שרוצים ללמוד ולהעביר הלאה.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" aria-label="שקופית 3">
+ <div class="inner">
+  <div class="eyebrow">הקהילה במרכז</div>
+  <h2>הקהילה היא <em>הדלת הראשית</em></h2>
+  <div class="two">
+   <div>
+    <p class="lead" style="margin-bottom:18px">אם צריך לבחור דבר אחד שסביבו הכול נבנה, זו הקהילה. זה המקום שבו אדם פוגש את לומדים כהלכה בפעם הראשונה ומרגיש שיש לו כתובת. כדי שההצטרפות תהיה כדאית מהרגע הראשון, היא מגיעה עם מעטפת מלאה:</p>
+    <div class="benefits">
+     <div class="benefit"><span class="dot">1</span><div><b>תוכן אקסטרא</b><span>שיעורים ותכנים נוספים שחברי הקהילה מקבלים מעבר למה שפתוח לכולם.</span></div></div>
+     <div class="benefit"><span class="dot">2</span><div><b>הנחה אוטומטית</b><span>חבר קהילה משלם פחות על הקורסים ועל מוצרי היודאיקה, בלי קופונים ובלי מאמץ.</span></div></div>
+     <div class="benefit"><span class="dot">3</span><div><b>הכנה לחגים</b><span>שיעורים שמכינים את הבית ואת הלב לקראת כל חג, בזמן הנכון.</span></div></div>
+     <div class="benefit"><span class="dot">4</span><div><b>מענה הלכה</b><span>כתובת לשאול בה שאלה בהלכה ולקבל תשובה.</span></div></div>
+    </div>
+   </div>
+   <div class="kids">
+    <h3>וגם לילדים: קהילה פלוס</h3>
+    <p>לצד המבוגרים נפתח עולם שלם לילדים, מלא בתוכן יהודי שנותן הרבה ערך וידע.</p>
+    <div class="chips"><span class="chip">משחקים</span><span class="chip">טריוויה</span><span class="chip">שיעורים</span><span class="chip">אתגרים</span></div>
+    <p>המטרה כפולה: שהילדים באמת יידעו ויכירו, ושיהיה להם באמת כיף. וכשהילדים נהנים, גם ההורים מרגישים שהקהילה היא בית לכל המשפחה.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 4 -->
+<section class="slide" aria-label="שקופית 4">
+ <div class="inner">
+  <div class="eyebrow">המודל הכלכלי</div>
+  <h2>כל שקל <em>מביא עוד אנשים</em></h2>
+  <div class="flywrap">
+   <div>
+    <p>הרעיון הכלכלי והשיווקי פשוט וחזק: כל הכסף שמגיע ממנויי הקהילה לא נשאר בצד, אלא הולך כולו לשיווק. כל שקל שנכנס מביא עוד אנשים לקהילה, מכל העולם, והם בתורם מוסיפים עוד שקלים לשיווק. כך הקהילה גדלה ומזינה את עצמה, סיבוב אחרי סיבוב.</p>
+    <div class="ptitle">ואיפה הרווח?</div>
+    <p style="color:var(--muted);margin-top:4px">הרווח שלנו מגיע ממה שנבנה סביב הקהילה:</p>
+    <div class="profit">
+     <div><b>קורסים</b><span>קורסים נוספים שנמכרים לחברי הקהילה.</span></div>
+     <div><b>יודאיקה</b><span>המכירות בחנות היודאיקה שלנו.</span></div>
+     <div><b>בהמשך</b><span>מנוי אקסטרא לקהילה, שבשלב מסוים כנראה יוכל גם הוא להפוך למקור הכנסה.</span></div>
+    </div>
+   </div>
+   <div class="fly" aria-label="גלגל התנופה: מנויי קהילה, שיווק, עוד חברים בכל העולם">
+    <svg viewBox="0 0 400 400">
+     <defs>
+      <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ecd29a"/><stop offset="1" stop-color="#b98d45"/></linearGradient>
+      <marker id="ar" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#d2ad66"/></marker>
+     </defs>
+     <circle cx="200" cy="200" r="140" fill="none" stroke="rgba(210,173,102,.18)" stroke-width="26"/>
+     <!-- arcs counter-clockwise for RTL feel -->
+     <path d="M149.1 73.9 A136 136 0 0 0 69.3 237.5" fill="none" stroke="url(#g2)" stroke-width="3" marker-end="url(#ar)"/>
+     <path d="M116.3 307.2 A136 136 0 0 0 278 311.4" fill="none" stroke="url(#g2)" stroke-width="3" marker-end="url(#ar)"/>
+     <path d="M327.8 246.5 A136 136 0 0 0 246.5 72.2" fill="none" stroke="url(#g2)" stroke-width="3" marker-end="url(#ar)"/>
+     <circle cx="200" cy="200" r="70" fill="rgba(210,173,102,.12)" stroke="url(#g2)" stroke-width="1.5"/>
+     <text x="200" y="192" text-anchor="middle" font-family="Assistant,sans-serif" font-size="34" font-weight="700" fill="#ecd29a">₪</text>
+     <text x="200" y="222" text-anchor="middle" font-family="Assistant,sans-serif" font-size="17" font-weight="600" fill="#f5efe2">כל שקל עובד</text>
+     <g font-family="Assistant,sans-serif" font-weight="700" text-anchor="middle">
+      <rect x="130" y="34" width="140" height="44" rx="22" fill="#d2ad66"/><text x="200" y="62" font-size="18" fill="#0e1a30">מנויי קהילה</text>
+      <rect x="10" y="262" width="130" height="44" rx="22" fill="#16264a" stroke="#d2ad66"/><text x="75" y="290" font-size="18" fill="#ecd29a">שיווק</text>
+      <rect x="244" y="262" width="150" height="58" rx="22" fill="#16264a" stroke="#d2ad66"/><text x="319" y="287" font-size="17" fill="#ecd29a">עוד חברים</text><text x="319" y="308" font-size="15" fill="#c9c0ad">מכל העולם</text>
+     </g>
+    </svg>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 5 -->
+<section class="slide" aria-label="שקופית 5">
+ <div class="inner">
+  <div class="eyebrow">מתחילים עכשיו</div>
+  <h2>ארבעה צעדים <em>שאפשר להתחיל כבר מחר</em></h2>
+  <p class="lead">לא צריך לחכות לתקציב ולא צריך מאמץ גדול. את ארבעת הצעדים האלה אפשר להתחיל באופן מיידי, בלי עלות:</p>
+  <div class="steps">
+   <div class="step"><div class="num">01</div><h3>תוכן בכמויות</h3><p>להפעיל את הרשתות של לומדים כהלכה במלוא הקצב, לייצר תוכן לשותפים שלנו כמו כסף חכם, ולמצוא עוד מקומות שישמחו לקבל מאיתנו תוכן בחינם.</p></div>
+   <div class="step"><div class="num">02</div><h3>פגישות עם ארגונים</h3><p>להיפגש עם ארגונים כמו ערכים, ארגונים של נשים גרושות ועוד, ולהזמין אותם להתחבר למעטפת של לומדים כהלכה, לטובת האנשים שהם מלווים.</p></div>
+   <div class="step"><div class="num">03</div><h3>קמפיין חנוכה</h3><p>קמפיין גדול סביב חנוכה: בניוזלטר, בקבוצות ובסטטוס של לומדים כהלכה, עם הצעה פשוטה שקשה לסרב לה: החודש הראשון בקהילה חינם.</p></div>
+   <div class="step"><div class="num">04</div><h3>אושיות ומשפיענים</h3><p>להריץ את הקמפיין גם דרך אושיות: חלקן, כפי שאמרת, יעשו זאת בחינם, כמו הניה בל ועוד. ובנוסף, לפנות לאושיות ביניים בהסכם פשוט: על כל הצטרפות שהן מביאות, הן מקבלות את השווי של כמה חודשי מנוי.</p></div>
+  </div>
+  <div class="closing">
+   <div class="candles" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="sh"></i><i></i><i></i><i></i><i></i></div>
+   חנוכה הוא זמן של אור שהולך ומתרבה.<br><span>בעזרת ה׳, בואו נדליק יחד את הנר הראשון ונצא לדרך.</span>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<nav class="nav" aria-label="ניווט במצגת">
+ <button class="btn" id="prev" aria-label="השקופית הקודמת"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+ <div class="mid"><div class="dots" id="dots"></div><div class="counter" id="counter" dir="ltr">1 / 5</div></div>
+ <button class="btn" id="next" aria-label="השקופית הבאה"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+</nav>
+
+<script>
+(function(){
+ const slides=[...document.querySelectorAll('.slide')];
+ const dots=document.getElementById('dots'),counter=document.getElementById('counter');
+ const prev=document.getElementById('prev'),next=document.getElementById('next');
+ let i=0;
+ slides.forEach((_,k)=>{const b=document.createElement('button');b.setAttribute('aria-label','שקופית '+(k+1));b.onclick=()=>go(k);dots.appendChild(b);});
+ function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));i=n;
+  slides.forEach((s,k)=>{s.classList.toggle('active',k===n);s.classList.toggle('before',k<n);});
+  [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===n));
+  counter.textContent=(n+1)+' / '+slides.length;
+  prev.disabled=n===0;next.disabled=n===slides.length-1;
+  slides[n].scrollTop=0;
+  document.getElementById('bsd').style.opacity=n===0?'.85':'.5';
+  if(history.replaceState)history.replaceState(null,'','#'+(n+1));
+ }
+ prev.onclick=()=>go(i-1);next.onclick=()=>go(i+1);
+ document.addEventListener('keydown',e=>{
+  if(['ArrowLeft','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(i+1);}
+  else if(['ArrowRight','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(i-1);}
+  else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+ });
+ let sx=0,sy=0,t=false;
+ document.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;t=true;},{passive:true});
+ document.addEventListener('touchend',e=>{if(!t)return;t=false;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+  if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3){go(dx>0?i+1:i-1);}},{passive:true});
+ const h=parseInt(location.hash.slice(1));go(h>=1&&h<=slides.length?h-1:0);
+})();
+</script>
+</body>
+</html>
